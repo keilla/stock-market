@@ -1,7 +1,7 @@
 <div class="stock-search">
-  <form [formGroup]="stockSearchForm" (ngSubmit)="onSubmit()" class="form">
+  <form [formGroup]="stockSearchForm" (ngSubmit)="searchStock()" class="form">
     <label class="label">Stock symbol</label>
-    <input type="text" formControlName="stockSymbol" class="input">
+    <input #input type="text" formControlName="stockSymbol" class="input">
     <app-button [label]="'find'"></app-button>
   </form>
   <div class="time-window">
@@ -9,3 +9,4 @@
     <span class="date">{{ endDate | date:"MM/dd/yy" }}</span>
   </div>
 </div>
+<app-stock-recommender *ngIf="stock" [stock]='stock'></app-stock-recommender>

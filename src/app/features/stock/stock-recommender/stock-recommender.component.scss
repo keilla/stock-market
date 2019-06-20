@@ -1,0 +1,27 @@
+@import 'src/styles/settings';
+
+.stock-card {
+  box-shadow: $card-shadow;
+  display: flex;
+  flex-direction: column;
+
+  & > .symbol {
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+    font-size: $font-size-medium;
+    background-color: $orange;
+    color: $white;
+    font-weight: $font-weight-semi-bold;
+  }
+
+  & > .price {
+    padding: 24px;
+    text-align: center;
+
+    & > .value {
+      display: block;
+      font-size: $font-size-big;
+    }
+  }
+}

@@ -1,11 +1,15 @@
 @import 'src/styles/settings';
 
+:host {
+  max-width: 500px;
+  display: block;
+}
+
 .stock-search {
   box-shadow: $card-shadow;
   padding: $space-medium $space-normal;
-  max-width: 500px;
-  display: flex;
-  justify-content: space-between;
+  position: relative;
+  margin-bottom: $space-small;
 
   & > .form {
     & > .label {
@@ -25,6 +29,10 @@
 .time-window {
   text-align: right;
   font-size: $font-size-small;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: $space-medium $space-normal;
 
   & > .date {
     & + .date {

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StockComponent } from './stock.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { StockRecommenderComponent } from 'src/app/feature/stock/stock-recommender/stock-recommender.component';
 
 describe('StockComponent', () => {
   let component: StockComponent;
@@ -8,7 +10,10 @@ describe('StockComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StockComponent ]
+      declarations: [ StockComponent, StockRecommenderComponent ],
+      imports: [
+        SharedModule
+      ]
     })
     .compileComponents();
   }));
