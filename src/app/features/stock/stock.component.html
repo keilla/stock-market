@@ -1,0 +1,5 @@
+<div class="stock-search">
+  <form [formGroup]="stockSearchForm" (ngSubmit)="onSubmit()" class="form">
+    <input type="text" formControlName="stockSymbol" placeholder="Stock symbol" class="input">
+  </form>
+</div>

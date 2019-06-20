@@ -1,0 +1,13 @@
+@import 'src/styles/settings';
+
+.stock-search {
+  box-shadow: $card-shadow;
+  padding: $space-medium $space-normal;
+
+  & > .form {
+    & > .input {
+      font-size: $font-size-medium;
+      padding: $space-small;
+    }
+  }
+}
