@@ -3,11 +3,36 @@
 .stock-search {
   box-shadow: $card-shadow;
   padding: $space-medium $space-normal;
+  max-width: 500px;
+  display: flex;
+  justify-content: space-between;
 
   & > .form {
+    & > .label {
+      display: block;
+      font-size: $font-size-small;
+      margin-bottom: $space-mini;
+    }
+
     & > .input {
       font-size: $font-size-medium;
       padding: $space-small;
+      margin-right: $space-small;
+    }
+  }
+}
+
+.time-window {
+  text-align: right;
+  font-size: $font-size-small;
+
+  & > .date {
+    & + .date {
+      &::before {
+        content: "-";
+        text-align: center;
+        padding: 0 $space-small;
+      }
     }
   }
 }

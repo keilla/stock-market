@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-stock',
@@ -9,13 +9,22 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class StockComponent implements OnInit {
 
   stockSearchForm: FormGroup;
+  beginDate: Date;
+  endDate: Date;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.stockSearchForm = new FormGroup({
-      stockSymbol: new FormControl(),
+    this.beginDate = new Date();
+    this.beginDate.setDate(this.beginDate.getDate() - 10);
+    this.endDate = new Date();
+
+    this.stockSearchForm = this.fb.group({
+      stockSymbol: [''],
+      beginDate: [this.beginDate],
+      endDate: [this.endDate]
     });
   }
+
 
 }

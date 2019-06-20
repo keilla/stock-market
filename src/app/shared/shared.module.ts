@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './components';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    ButtonComponent
   ],
   exports: [
-    HeaderComponent,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HeaderComponent,
+    ButtonComponent
   ],
   imports: [
     CommonModule,
