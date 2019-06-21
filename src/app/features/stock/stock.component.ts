@@ -15,7 +15,7 @@ export class StockComponent implements OnInit, AfterViewInit, OnDestroy {
   stockSearchForm: FormGroup;
   beginDate: Date;
   endDate: Date;
-  days = 10;
+  days = 9;
   stock: Stock;
   socialMedias: string[];
   unsub$ = new Subject();

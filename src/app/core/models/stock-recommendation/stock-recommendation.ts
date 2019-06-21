@@ -1,4 +1,4 @@
-import { Recommendation } from './recommendation.enum';
+import { Recommendation } from '../recommendation.enum';
 
 export class StockRecommendation {
   date: Date;
