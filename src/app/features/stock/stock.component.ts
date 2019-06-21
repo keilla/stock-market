@@ -1,20 +1,24 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StockService } from 'src/app/core/services';
 import { Stock } from 'src/app/core/models';
+import { Subject, pipe } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-stock',
   templateUrl: './stock.component.html',
   styleUrls: ['./stock.component.scss']
 })
-export class StockComponent implements OnInit, AfterViewInit {
+export class StockComponent implements OnInit, AfterViewInit, OnDestroy {
 
   stockSearchForm: FormGroup;
   beginDate: Date;
   endDate: Date;
   days = 10;
   stock: Stock;
+  socialMedias: string[];
+  unsub$ = new Subject();
 
   @ViewChild('input',  {static: false}) input: ElementRef;
 
@@ -46,9 +50,17 @@ export class StockComponent implements OnInit, AfterViewInit {
         this.stockSearchForm.get('stockSymbol').value,
         this.stockSearchForm.get('beginDate').value,
         this.stockSearchForm.get('endDate').value
-      )
+      ).
+      pipe(takeUntil(this.unsub$))
       .subscribe(stock => this.stock = stock);
+
+      this.socialMedias = this.stockService.socialMedias;
     }
+  }
+
+  ngOnDestroy() {
+    this.unsub$.next();
+    this.unsub$.complete();
   }
 
 }

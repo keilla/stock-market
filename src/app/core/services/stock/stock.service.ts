@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Stock } from '../../models';
+import { Stock, StockRecommendation } from '../../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockService {
 
+  socialMedias = ['twitter', 'facebook'];
+
   constructor() { }
 
   getStotck(symbol: string, beginDate: Date, endDate: Date): Observable<Stock> {
-    const datePrices = this.getDates(beginDate, endDate).map(date => {
-      return { price: this.getPrice(), date };
+    const stockRecommendations = this.getDates(beginDate, endDate).map(date => {
+      return new StockRecommendation(
+        date,
+        this.getPrice(),
+        this.getSocialMediasCounts()
+      );
     });
-    return of(new Stock(symbol, datePrices));
+    return of(new Stock(symbol, stockRecommendations));
   }
 
-  getPrice() {
+  getPrice(): number {
     return Math.random() * 100;
   }
 
@@ -31,5 +37,15 @@ export class StockService {
       dates.push(date);
     }
     return dates;
+  }
+
+  getSocialMediaCount(): number {
+    return Math.trunc(Math.random() * 100);
+  }
+
+  getSocialMediasCounts(): { socialMedia: string, count: number }[] {
+    return this.socialMedias.map(socialMedia => {
+      return { socialMedia, count: this.getSocialMediaCount() };
+    });
   }
 }

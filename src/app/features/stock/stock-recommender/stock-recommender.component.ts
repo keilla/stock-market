@@ -9,10 +9,12 @@ import { Stock } from 'src/app/core/models';
 export class StockRecommenderComponent implements OnInit {
 
   @Input() stock: Stock;
+  @Input() socialMedias: string[];
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.stock);
   }
 
 }

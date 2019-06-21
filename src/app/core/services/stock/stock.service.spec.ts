@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { StockService } from './stock.service';
-import { Stock } from '../../models';
+import { Stock, StockRecommendation } from '../../models';
 import { of } from 'rxjs';
 
 describe('StockService', () => {
@@ -17,13 +17,14 @@ describe('StockService', () => {
 
     spyOn(service, 'getPrice').and.returnValue(10);
     spyOn(service, 'getDates').and.returnValue([date1, date2, date3]);
+    spyOn(service, 'getSocialMediasCounts').and.returnValue([{ socialMedia: 'twitter', count: 15 }]);
 
     service.getStotck('banana', new Date(), new Date()).subscribe(stock => {
       expect(stock).toEqual(
         new Stock('banana', [
-          { price: 10, date: date1 },
-          { price: 10, date: date2 },
-          { price: 10, date: date3 }
+          new StockRecommendation(date1, 10, [{ socialMedia: 'twitter', count: 15 }]),
+          new StockRecommendation(date2, 10, [{ socialMedia: 'twitter', count: 15 }]),
+          new StockRecommendation(date3, 10, [{ socialMedia: 'twitter', count: 15 }])
         ]));
       done();
     });

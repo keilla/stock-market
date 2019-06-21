@@ -5,16 +5,16 @@
       <tr class="line">
         <th>Date</th>
         <th>Price</th>
-        <th>Social Media</th>
+        <th *ngFor="let socialMedia of socialMedias">{{ socialMedia }}</th>
         <th>Recommendation</th>
       </tr>
     </thead>
     <tbody class="body">
-      <tr *ngFor="let datePrice of stock.datePrices" class="line">
-        <td class='cell'>{{ datePrice.date | date:"MM/dd/yy" }}</td>
-        <td class='cell'>{{ datePrice.price | currency }}</td>
-        <td class='cell'></td>
-        <td class='cell'></td>
+      <tr *ngFor="let recommendation of stock.recommendations" class="line">
+        <td class='cell'>{{ recommendation.date | date:"MM/dd/yy" }}</td>
+        <td class='cell'>{{ recommendation.price | currency }}</td>
+        <td class='cell' *ngFor="let socialMedia of recommendation.socialMediasCounts">{{ socialMedia.count }}</td>
+        <td class='cell'>{{ recommendation.status }}</td>
       </tr>
     </tbody>
   </table>
