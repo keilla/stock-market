@@ -6,15 +6,35 @@ import { of } from 'rxjs';
 
 describe('StockService', () => {
 
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: StockService;
+
+  beforeEach(() => service = TestBed.get(StockService));
 
   it('should return stock list', (done) => {
-    const service: StockService = TestBed.get(StockService);
+    const date1 = new Date(2019, 6, 18);
+    const date2 = new Date(2019, 6, 19);
+    const date3 = new Date(2019, 6, 20);
+
     spyOn(service, 'getPrice').and.returnValue(10);
-    service.getStotck('banana').subscribe(stock => {
-      expect(stock).toEqual(new Stock('banana', 10));
+    spyOn(service, 'getDates').and.returnValue([date1, date2, date3]);
+
+    service.getStotck('banana', new Date(), new Date()).subscribe(stock => {
+      expect(stock).toEqual(
+        new Stock('banana', [
+          { price: 10, date: date1 },
+          { price: 10, date: date2 },
+          { price: 10, date: date3 }
+        ]));
       done();
     });
+  });
+
+  it('should return dates', () => {
+    const date1 = new Date(2019, 6, 18);
+    const date2 = new Date(2019, 6, 19);
+    const date3 = new Date(2019, 6, 20);
+    expect(service.getDates(date1, date3).length).toBe(3);
+    expect(service.getDates(date1, date3)).toEqual([date1, date2, date3]);
   });
 
 });

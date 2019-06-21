@@ -14,7 +14,7 @@ export class StockComponent implements OnInit, AfterViewInit {
   beginDate: Date;
   endDate: Date;
   days = 10;
-  stock: Stock
+  stock: Stock;
 
   @ViewChild('input',  {static: false}) input: ElementRef;
 
@@ -42,7 +42,11 @@ export class StockComponent implements OnInit, AfterViewInit {
 
   searchStock() {
     if (this.stockSearchForm.valid) {
-      this.stockService.getStotck(this.stockSearchForm.get('stockSymbol').value)
+      this.stockService.getStotck(
+        this.stockSearchForm.get('stockSymbol').value,
+        this.stockSearchForm.get('beginDate').value,
+        this.stockSearchForm.get('endDate').value
+      )
       .subscribe(stock => this.stock = stock);
     }
   }

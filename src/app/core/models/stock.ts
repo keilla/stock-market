@@ -1,9 +1,9 @@
 export class Stock {
   symbol: string;
-  price: number;
+  datePrices: { price: number, date: Date }[];
 
-  constructor(symbol: string, price: number) {
+  constructor(symbol: string, datePrices: { price: number, date: Date }[]) {
     this.symbol = symbol;
-    this.price = price;
+    this.datePrices = datePrices;
   }
 }

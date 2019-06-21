@@ -9,11 +9,27 @@ export class StockService {
 
   constructor() { }
 
-  getStotck(symbol: string): Observable<Stock> {
-    return of(new Stock(symbol, this.getPrice()));
+  getStotck(symbol: string, beginDate: Date, endDate: Date): Observable<Stock> {
+    const datePrices = this.getDates(beginDate, endDate).map(date => {
+      return { price: this.getPrice(), date };
+    });
+    return of(new Stock(symbol, datePrices));
   }
 
   getPrice() {
-    return Math.random();
+    return Math.random() * 100;
+  }
+
+  getDates(beginDate: Date, endDate: Date): Date[] {
+    const dates = new Array<Date>();
+    const diffTime = Math.abs(endDate.getTime() - beginDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    for (let days = 0; days <= diffDays; days++) {
+      const date = new Date(beginDate);
+      date.setDate(date.getDate() + days);
+      dates.push(date);
+    }
+    return dates;
   }
 }
