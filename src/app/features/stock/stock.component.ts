@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } fr
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StockService } from 'src/app/core/services';
 import { Stock } from 'src/app/core/models';
-import { Subject, pipe } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { takeUntil, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-stock',
@@ -15,7 +15,6 @@ export class StockComponent implements OnInit, AfterViewInit, OnDestroy {
   stockSearchForm: FormGroup;
   beginDate: Date;
   endDate: Date;
-  days = 9;
   stock: Stock;
   socialMedias: string[];
   unsub$ = new Subject();
@@ -28,16 +27,25 @@ export class StockComponent implements OnInit, AfterViewInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.beginDate = new Date();
-    this.beginDate.setDate(this.beginDate.getDate() - this.days);
-    this.endDate = new Date();
-
     this.stockSearchForm = this.fb.group({
       stockSymbol: ['', Validators.required],
-      beginDate: [this.beginDate],
-      endDate: [this.endDate]
+      days: [10],
     });
 
+    this.setTimeWindow(10);
+    this.stockSearchForm.get('days').valueChanges
+    .pipe(
+      filter(value => value !== '')
+    )
+    .subscribe(days =>
+      this.setTimeWindow(days)
+    );
+  }
+
+  setTimeWindow(days: number) {
+    this.beginDate = new Date();
+    this.beginDate.setDate(this.beginDate.getDate() - (days - 1));
+    this.endDate = new Date();
   }
 
   ngAfterViewInit() {
@@ -48,8 +56,8 @@ export class StockComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.stockSearchForm.valid) {
       this.stockService.getStotck(
         this.stockSearchForm.get('stockSymbol').value,
-        this.stockSearchForm.get('beginDate').value,
-        this.stockSearchForm.get('endDate').value
+        this.beginDate,
+        this.endDate
       ).
       pipe(takeUntil(this.unsub$))
       .subscribe(stock => this.stock = stock);

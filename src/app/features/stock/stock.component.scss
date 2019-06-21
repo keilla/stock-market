@@ -2,22 +2,33 @@
 
 .stock-search {
   box-shadow: $card-shadow;
-  padding: $space-medium $space-normal;
+  padding: $space-medium;
   position: relative;
   margin-bottom: $space-normal;
   max-width: 500px;
 
   & > .form {
-    & > .label {
-      display: block;
-      font-size: $font-size-small;
-      margin-bottom: $space-mini;
-    }
+    display: flex;
+    align-items: flex-end;
+  }
+}
 
+.field-group {
+  & > .label {
+    display: block;
+    font-size: $font-size-small;
+    margin-bottom: $space-mini;
+  }
+
+  & > .input {
+    font-size: $font-size-medium;
+    padding: $space-small;
+    margin-right: $space-small;
+  }
+
+  &.-small {
     & > .input {
-      font-size: $font-size-medium;
-      padding: $space-small;
-      margin-right: $space-small;
+     width: 50px;
     }
   }
 }

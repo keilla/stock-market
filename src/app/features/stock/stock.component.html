@@ -1,7 +1,13 @@
 <div class="stock-search">
-  <form [formGroup]="stockSearchForm" (ngSubmit)="searchStock()" class="form">
-    <label class="label">Stock symbol</label>
-    <input #input type="text" formControlName="stockSymbol" class="input">
+  <form [formGroup]="stockSearchForm" (ngSubmit)="searchStock()" class='form'>
+    <div class='field-group'>
+      <label class="label" for="stockSymbol">Stock symbol</label>
+      <input #input type="text" formControlName="stockSymbol" class="input" name="stockSymbol">
+    </div>
+    <div class="field-group -small">
+      <label class="label" for="days">Days</label>
+      <input #input type="text" formControlName="days" class="input" name="days">
+    </div>
     <app-button [label]="'find'"></app-button>
   </form>
   <div class="time-window">
