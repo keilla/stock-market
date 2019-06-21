@@ -11,9 +11,9 @@
     text-align: center;
     padding: $space-normal;
     font-size: $font-size-medium;
-    color: $orange;
+    color: $pink;
     font-weight: $font-weight-semi-bold;
-    border-bottom: solid 2px $orange;
+    border-bottom: solid 2px $pink;
     margin-bottom: $space-normal;
   }
 }
@@ -33,6 +33,23 @@
         padding: $space-small;
       }
     }
+  }
+}
 
+.recommendation-status {
+  padding: $space-mini $space-small;
+  border-radius: 2px;
+  font-weight: $font-weight-semi-bold;
+  color: $white;
+  font-size: $font-size-small;
+
+  &.-green {
+    background-color: $green;
+  }
+  &.-orange {
+    background-color: $orange;
+  }
+  &.-blue {
+    background-color: $blue;
   }
 }

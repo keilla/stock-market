@@ -2,19 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { HeaderComponent } from './components';
-import { ButtonComponent } from './components/button/button.component';
+import { HeaderComponent, ButtonComponent} from './components';
+import { AlertDirective } from './directives';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    ButtonComponent
+    ButtonComponent,
+    AlertDirective
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
     HeaderComponent,
-    ButtonComponent
+    ButtonComponent,
+    AlertDirective
   ],
   imports: [
     CommonModule,

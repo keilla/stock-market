@@ -14,7 +14,7 @@
         <td class='cell'>{{ recommendation.date | date:"MM/dd/yy" }}</td>
         <td class='cell'>{{ recommendation.price | currency }}</td>
         <td class='cell' *ngFor="let socialMedia of recommendation.socialMediasCounts">{{ socialMedia.count }}</td>
-        <td class='cell'>{{ recommendation.status }}</td>
+        <td class='cell'><span class="recommendation-status" [appAlert]='getAlert(recommendation.status)'>{{ recommendation.status }}</span></td>
       </tr>
     </tbody>
   </table>
