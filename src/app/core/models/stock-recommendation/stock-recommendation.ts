@@ -33,6 +33,9 @@ export class StockRecommendation {
   }
 
   get socialMediaCount() {
-    return 0;
+    const socialMediaSum = this.socialMediasCounts.reduce((a, b) => {
+      return (a + b.count);
+    }, 0);
+    return Math.trunc(socialMediaSum / this.socialMediasCounts.length);
   }
 }
