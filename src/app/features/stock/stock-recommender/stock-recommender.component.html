@@ -1,7 +1,21 @@
 <div class='stock-card'>
-  <span class='symbol'>{{ stock.symbol }}</span>
-  <div class='price'>
-    <!-- <label class="label">Price</label>
-    <span class="value">{{ stock.price | currency }}</span> -->
-  </div>
+  <h2 class='symbol'>{{ stock.symbol }}</h2>
+  <table class='recommendation-table'>
+    <thead class="header">
+      <tr class="line">
+        <th>Date</th>
+        <th>Price</th>
+        <th>Social Media</th>
+        <th>Recommendation</th>
+      </tr>
+    </thead>
+    <tbody class="body">
+      <tr *ngFor="let datePrice of stock.datePrices" class="line">
+        <td class='cell'>{{ datePrice.date | date:"MM/dd/yy" }}</td>
+        <td class='cell'>{{ datePrice.price | currency }}</td>
+        <td class='cell'></td>
+        <td class='cell'></td>
+      </tr>
+    </tbody>
+  </table>
 </div>

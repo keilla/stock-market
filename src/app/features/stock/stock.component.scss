@@ -1,15 +1,11 @@
 @import 'src/styles/settings';
 
-:host {
-  max-width: 500px;
-  display: block;
-}
-
 .stock-search {
   box-shadow: $card-shadow;
   padding: $space-medium $space-normal;
   position: relative;
   margin-bottom: $space-small;
+  max-width: 500px;
 
   & > .form {
     & > .label {

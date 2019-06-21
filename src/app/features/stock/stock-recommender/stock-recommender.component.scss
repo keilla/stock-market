@@ -4,24 +4,35 @@
   box-shadow: $card-shadow;
   display: flex;
   flex-direction: column;
+  padding: $space-normal $space-big;
 
   & > .symbol {
     width: 100%;
     text-align: center;
-    padding: 8px;
+    padding: $space-normal;
     font-size: $font-size-medium;
-    background-color: $orange;
-    color: $white;
+    color: $orange;
     font-weight: $font-weight-semi-bold;
+    border-bottom: solid 2px $orange;
+    margin-bottom: $space-normal;
   }
+}
 
-  & > .price {
-    padding: 24px;
+.recommendation-table {
+  & > .body {
+
     text-align: center;
+    font-size: $font-size-normal;
 
-    & > .value {
-      display: block;
-      font-size: $font-size-big;
+    & > .line {
+      &:nth-child(even) {
+        background-color: rgba($grey-20, .30);
+      }
+
+      & > .cell {
+        padding: $space-small;
+      }
     }
+
   }
 }
