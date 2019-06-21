@@ -1,27 +1,60 @@
-# StockMarketRecommender
+# Stock Market Recommender
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.1.
+Program that allows to get recommendation of stocks
 
-## Development server
+## Getting Started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project was structured as bellow:
 
-## Code scaffolding
+Source files are in src/app folder
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* **core**: contains models and services
+  * _Stock_: class that represents a stock and its recommendations
+  * _StockRecommendation_: class that represents a stock recomendation
+  * _Recommendation_: enum that represents a type of recommendations
+  * _StockService_: mock values of stock recommendations
+* **features/stock**: contains feature that provides stock recommendations
+  * _StockComponent_: top component that consume StockService and has StockRecommenderComponent embedded view
+  * _StockRecommenderComponenent_: table with stock recommendations
+* **shared**: contains shared declarables (components, directives, pipes)
+  * _HeaderComponent_
+  * _ButtonComponent_
+  * _AlertDirective_: used to add css class to types of recommendations
+* **styles**: contains style files
+  * _base_: tags basic styles
+  * _generic_: generic properties
+  * _objects_: objects that can reused
+  * _settings_: basic configurations
+  * _tools_: mixins and functions
 
-## Build
+### CSS 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+_styles_: imports style files in ascending order of specificity, following ITCSS architecture
+Components CSS classes follows RSCSS methodology
 
-## Running unit tests
+### Prerequisites
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+node ^v10.10.0
 
-## Running end-to-end tests
+### Installing
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+npm install
+``` 
 
-## Further help
+## Running the tests
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+npm test
+``` 
+
+### Runnning project
+
+```
+npm start
+Access http://localhost:4200/ from a browser 
+```
+
+## Author
+
+Keilla Menezes Fernandes

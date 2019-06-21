@@ -29,13 +29,13 @@ export class StockComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.stockSearchForm = this.fb.group({
       stockSymbol: ['', Validators.required],
-      days: [10],
+      days: [10, Validators.required],
     });
 
     this.setTimeWindow(10);
     this.stockSearchForm.get('days').valueChanges
     .pipe(
-      filter(value => value !== '')
+      filter(value => !isNaN(+value))
     )
     .subscribe(days =>
       this.setTimeWindow(days)
